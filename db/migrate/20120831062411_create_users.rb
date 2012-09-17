@@ -8,9 +8,9 @@ class CreateUsers < ActiveRecord::Migration
       t.string :email
       t.string :password_digest
       t.string :remember_token
-      t.integer :posts_count
-      t.integer :comments_count
-      t.integer :likes_count
+      #t.integer :posts_count
+      #t.integer :comments_count
+      #t.integer :likes_count
 
       t.timestamps
     end
