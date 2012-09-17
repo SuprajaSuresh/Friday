@@ -1,0 +1,22 @@
+
+  <p>
+    <b>Title:</b>
+    <%= post.title %>
+  </p>
+ 
+  <p>
+    <b>Content:</b>
+    <%= post.content %>
+  </p>
+  <p>
+    <b>Number of comments:</b>
+    <%= post.comments.count %>
+  </p>
+
+<p>
+  <b>Comments :</b>
+  <%= render post.comments %>
+</p>
+<h2>Add a comment:</h2>
+
+<%= render "comments/form", :post => post %>

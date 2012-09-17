@@ -1,0 +1,17 @@
+<p>
+  <%= gravatar_for @user %>
+
+ <h1> <%= @user.username %> </h1>   
+ 
+ <p> Number of posts: <%= @user.posts.count %></p>
+<p> Number of comments: <%= @user.comments.count %></p>
+
+<h2>Posts</h2>
+<%= render @user.posts %>
+
+<h2>Add a post:</h2>
+<%= render "posts/form" %>
+<br/>
+	<h3> <%= link_to "Sign Out", root_path %> <br/>
+
+

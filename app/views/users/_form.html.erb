@@ -1,0 +1,54 @@
+<%= form_for(@user) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= f.label :Username %><br />
+    <%= f.text_field :username %>
+  </div>
+  
+  <div>
+    <%= f.label :Fullname %><br />
+    <%= f.text_field :fullname %>
+  </div>
+  
+  <div>
+     <%= f.label :Gender %><br />
+    <%= radio_button_tag(:gender, "Male") %>
+    <%= label_tag(:male, "Male") %>
+    <%= radio_button_tag(:gender, "Female") %>
+    <%= label_tag(:female, "Female") %>
+  </div>
+
+  <div >
+    <%= f.label :DoB %><br />
+     <%= f.datepicker 'dob' %>
+  </div> 
+
+  <div>
+    <%= f.label :Email %><br />
+    <%= f.text_field :email %>
+  </div>
+  
+  <div>
+    <%= f.label :Password %><br />
+    <%= f.password_field :password %>
+  </div>
+  <%= f.label :password_confirmation, "Confirmation" %> <br/>
+      <%= f.password_field :password_confirmation %>
+  <div>
+  
+    <%= f.submit "Create my Account" %>
+
+    <%= link_to "Back" , root_path %>
+   </div>
+<% end %>

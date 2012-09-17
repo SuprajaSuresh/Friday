@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Friday</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+  
+</head>
+
+<body style= "background: #FFFFCC">
+  <div class="notice">
+    <%= flash[:notice] %>
+  </div>
+  <div class="error">
+    <%= flash[:error] %>
+  </div>
+  <%= yield %>
+
+</body>
+</html>

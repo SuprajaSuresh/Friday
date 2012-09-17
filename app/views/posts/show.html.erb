@@ -1,0 +1,18 @@
+<p>
+    <h1>
+    <%= post.title %>
+    </h1>
+  </p>
+ 
+  <p>
+    <b>Content:</b>
+    <%= post.content %>
+  </p>
+<p>
+  <b>Comments :</b>
+  <%= render post.comments %>
+</p>
+<h2>Add a comment:</h2>
+
+<%= render "comments/form", :post => post %>
+<h3> <%= link_to "Back", user_path %> <br/>
