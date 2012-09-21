@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-
+  skip_before_filter :login_required, :only => [:new, :create]
+  
   def show
     @user = User.find(params[:id])
   end
@@ -14,8 +15,7 @@ class UsersController < ApplicationController
        flash[:success] = "Welcome!"
         redirect_to @user
       else
-        render  'new'
-        
+        render  'new'  
       end
   end
 end

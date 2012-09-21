@@ -1,17 +1,20 @@
+<p>
+    <b>Title:</b> 
 
-  <p>
-    <b>Title:</b>
     <%= post.title %> 
-  </p>
+    <%= link_to "Like", post_likes_path(:post_id => post), :method => :post %> 
+    <%= link_to "Delete", post_path(post), :confirm => "Are you sure want to delete?", :method => :delete %> <br />
+    Number of likes :<%= post.likes.count %>
+</p>
  
-  <p>
+<p>
     <b>Content:</b>
     <%= post.content %>
-  </p>
-  <p>
+</p>
+<p>
     <b>Number of comments:</b>
     <%= post.comments.count %>
-  </p>
+</p>
 
 <p>
   <b>Comments :</b>

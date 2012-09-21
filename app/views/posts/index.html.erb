@@ -1,0 +1,14 @@
+<table>
+  <thead>
+    <tr>
+      <td>Title</td>
+      <td>Content</td>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render @current_user.posts %>
+  </tbody>
+</table>
+  <div>
+    <%= link_to "Back", @user_path %>
+  </div>
