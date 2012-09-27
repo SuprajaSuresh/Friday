@@ -13,7 +13,8 @@ class PostsController < ApplicationController
 	    if @post.save    
       	format.html { redirect_to @user, notice: 'Post was successfully created.' }
     	else
-    		redirect_to user_path(@user)
+    		format.html { redirect_to @user }
+        flash[:error] = 'Post must have Content !! '
  	 		end
 		end
 	end

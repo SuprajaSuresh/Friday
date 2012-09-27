@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html>
-  <head> 
-  </head>
-  <body align = "center" >
-    <h1> <i>Welcome </i></h1>
+	<h1> <%= image_tag("smiley.jpg", :size => "20x20") %> Welcome to ReAcH OuT <%= image_tag("smiley.jpg", :size => "20x20") %>  </h1> <br />
+   <body align = "center" >  
     <p>
-    <h3> <%= link_to "Sign In", signin_path %> <br/>
+    <h3> <%= link_to "Sign In", signin_path %> <br/> <br/>
 
-    <%= link_to "Not a member yet? Sign up now!", signup_path %> </h3>
-    
+    <%= link_to "Not a member yet? Sign up for free!", signup_path %> </h3>
+   
     </p>
   </body>
 </html>

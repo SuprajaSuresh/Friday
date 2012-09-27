@@ -1,8 +1,9 @@
 <p>
     <b>Title:</b> 
 
-    <%= post.title %> 
-    <%= link_to "Like", post_likes_path(:post_id => post), :method => :post %> 
+    <%= post.title %>
+    <!-- <button id="but">like</button> !-->
+    <%= link_to "like", post_likes_path(:post_id => post), :method => :post , :id => 'but', :remote => true %> 
     <%= link_to "Delete", post_path(post), :confirm => "Are you sure want to delete?", :method => :delete %> <br />
     Number of likes :<%= post.likes.count %>
 </p>

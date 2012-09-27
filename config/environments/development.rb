@@ -34,4 +34,21 @@ Friday::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :address              => "smtp.gmail.com",
+    :port                 => 587,
+    :domain               => 'baci.lindsaar.net',
+    :user_name            => 'supraja.suresh.s',
+    :password             => 'borntodance',
+    :authentication       => 'plain',
+    :enable_starttls_auto => true  }
+# Defaults to:
+# config.action_mailer.sendmail_settings = {
+#   :location => '/usr/sbin/sendmail',
+#   :arguments => '-i -t'
+# }
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+ 
 end

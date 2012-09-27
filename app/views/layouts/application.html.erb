@@ -1,21 +1,29 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Friday</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
+  <head>
+    <title> Reach Out!! </title>
+    <%= stylesheet_link_tag    "application", media: "all" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+    <div>
+      <% if flash[:error] %>
+        <%= flash[:error] %></p>
+      <% end %>
+      <% if flash[:notice] %>
+        <%= flash[:notice] %></p>
+      <% end %>
+  </div>
+    <div align ="center">
+      <%= image_tag('logo4.jpg', :size => "300x200") %>
+    </div>
+  </head>
   
-</head>
-
-<body style= "background: #FFFFCC">
-  <div class="notice">
-    <%= flash[:notice] %>
-  </div>
-  <div class="error">
-    <%= flash[:error] %>
-  </div>
-  <%= yield %>
-
-</body>
+  <body style = "background:#FFC0CB">
+    <div class="container">
+      <% if current_user %>
+        <%= render :partial => "layouts/header" %>
+      <% end %>
+      <%= yield %>
+    </div>
+  </body>
 </html>

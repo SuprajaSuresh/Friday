@@ -1,14 +1,28 @@
 
-	<%= gravatar_for @user %>
-	<h1> <%= @user.username %> </h1>   
-	<p> Number of posts: <%= @user.posts.count %></p>
-	<p> Number of comments: <%= @user.comments.count %></p>
-	<p> Number of likes: <%= @user.likes.count %></p>
-	<h2>Posts</h2> 
-	<%= render @user.posts %>
-	<h2>Add a post:</h2>
-	<%= render "posts/form" %>
-	<br/>
-	<h3> <%= link_to "Sign Out", root_path %> <br/>
+<div style= "float :left;">
+	<%= image_tag @user.pic.url(:thumb) %> 
+</div>
+
+<h2> <%= @user.username %> </h2> <br/>
+Number of posts: <%= @user.posts.count %><br/>
+Number of comments: <%= @user.comments.count %></br/>
+Number of likes: <%= @user.likes.count %><br/> <br />
+<div style = "float :right; border: solid 1px black;" />
+<h3>My Friends</h3>  
+<ul>  
+   <% for friendship in @user.friendships %>  
+  	<li>  
+    	<%= friendship.friend.username %>  
+    	<%= link_to "Remove", friendship, :confirm => 'Are you sure you want to remove?', :method => :delete %> 
+  	</li>
+
+  <% end %>  
+
+</ul>  
+</div>
+<h2>Posts</h2> 
+<%= render @user.posts %>
+<h2>Add a post:</h2>
+<%= render "posts/form" %>
 
 

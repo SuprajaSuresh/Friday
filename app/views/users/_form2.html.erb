@@ -1,0 +1,54 @@
+<%= form_for @user, :html => { :multipart => true } do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div>
+    <%= f.label :Username %><br />
+    <%= f.text_field :username, :placeholder => "User Name"%>
+  </div>
+
+  <div>
+    <%= f.label :Fullname %><br />
+    <%= f.text_field :fullname %>
+  </div>
+  <p>
+     <b> Upload Profile Picture </b><br/>
+     <%= f.file_field :pic %>
+ </p>
+  <div>
+    <%= f.label :Email %><br />
+    <%= f.text_field :email, :placeholder => "Email Id" %>
+  </div>
+  <div>
+     <%= f.label :Gender %><br />
+    <%= radio_button_tag(:gender, "Male") %>
+    <%= label_tag(:male, "Male") %>
+    <%= radio_button_tag(:gender, "Female") %>
+    <%= label_tag(:female, "Female") %>
+  </div>
+
+  <div >
+    <%= f.label :DoB %><br />
+     <%= f.datepicker 'dob', :dateFormat => "dd/mm/yy"  %>
+  </div> 
+  <div>
+    <%= f.label :Password %><br />
+    <%= f.password_field :password, :placeholder => "Minimum 6 Characters" %>
+  </div>
+  <div>
+    <%= f.label :password_confirmation, "Confirmation" %> <br/>
+    <%= f.password_field :password_confirmation, :placeholder => "Re-type Password" %>
+  </div>
+  <div>
+    <%= f.submit "Save" %> <br/>
+  </div>
+  <%= link_to 'Back', user_path %>
+<% end %>

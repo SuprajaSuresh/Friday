@@ -1,5 +1,5 @@
 Friday::Application.routes.draw do
-  root to: 'pages#HOme'
+  root to: 'sessions#new'
   resources :users do
       resources :posts
   end
@@ -7,6 +7,7 @@ Friday::Application.routes.draw do
     resources :comments
     resources :likes
   end
+  resources :friendships
   resources :sessions, only: [:new, :create, :destroy]
   match '/signup', to: 'users#new'
   match '/signin',  to: 'sessions#new'

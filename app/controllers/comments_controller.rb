@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
     @post = Post.find(params[:post_id])
     opts = params[:comment].merge(:user_id => current_user.id)
     @comment = @post.comments.create(opts)
-    redirect_to user_path(current_user)
+    redirect_to :back 
   end
 
   def destroy

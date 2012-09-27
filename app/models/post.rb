@@ -3,4 +3,6 @@ class Post < ActiveRecord::Base
   attr_accessible :content, :title
   has_many :comments, :dependent => :destroy
   has_many :likes, :dependent => :destroy
+
+  validates :content, presence: true
 end

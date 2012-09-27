@@ -1,7 +1,10 @@
-<h1> Sign In </h1>
+<h1 align= "center"> <%= image_tag("smiley.jpg", :size => "20x20") %> Welcome to ReAcH OuT <%= image_tag("smiley.jpg", :size => "20x20") %>  </h1> <br />
+
+<h2> Sign In </h2>
 
 <div>
   <div>
+    <fieldset>
     <%= form_for(:session, url: sessions_path) do |f| %>
 
       <%= f.label :Email %>
@@ -14,7 +17,7 @@
     <% end %>
 
     <p>New user? <%= link_to "Sign up now!", signup_path %></p>
-    <%= link_to "Home" , root_path %>
-
+   
+  </fieldset>
   </div>
 </div>
