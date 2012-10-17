@@ -1,13 +1,13 @@
 class UsersController < ApplicationController
-  skip_before_filter :login_required, :except => [:index]
+  skip_before_filter :login_required, :only => [:new, :create] #:except => [:index]
   
   def index
-    @users = User.all
-
+    @users = User.find(:all, :conditions => ["id != ?", current_user.id])
     respond_to do |format|
       format.html 
     end
   end
+
   def show
     @user = User.find(params[:id])
     render "show"
@@ -26,13 +26,13 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
-        #raise @user.inspect
         format.html { redirect_to @user, notice: 'Profile updated.' }
       else
         format.html { render action: "edit" }
       end
     end
   end
+  
   def create
     @user = User.new(params[:user])
       if @user.save
@@ -43,4 +43,4 @@ class UsersController < ApplicationController
         render  'new'  
       end
   end
- end
+end

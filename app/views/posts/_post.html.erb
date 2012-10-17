@@ -1,26 +1,45 @@
 <p>
     <b>Title:</b> 
+    <%= post.title %> <br />
 
-    <%= post.title %>
-    <!-- <button id="but">like</button> !-->
-    <%= link_to "like", post_likes_path(:post_id => post), :method => :post , :id => 'but', :remote => true %> 
-    <%= link_to "Delete", post_path(post), :confirm => "Are you sure want to delete?", :method => :delete %> <br />
-    Number of likes :<%= post.likes.count %>
+    <% if current_user.already_likes?(post) %>
+        <%- like = post.likes.where(:user_id => current_user.id).first %>
+        <%= link_to "Unlike", post_like_path(post, like), :method => :delete %> 
+       <% if post.likes.count > 2 %> 
+           You, <%= post.get_recent_two_likers(current_user).join(', ') %> and  <%= post.likes.count-3 %> others like this
+       <% else %>
+            You and <%= post.get_recent_two_likers(current_user).join(', ') %> like this
+        <% end %>
+    <% else %>
+        <%= link_to "Like", post_likes_path(:post_id => post), :method => :post %>
+        <% if post.likes.count > 2 %>
+             <%= post.get_recent_two_likers(current_user).join(', ') %> and  <%= post.likes.count-2 %> others like this
+        <% else %>
+            <%= post.get_recent_two_likers(current_user).join(' and ') %> like this
+        <% end %>
+    <% end %>  
+
+    <% if @user == current_user %>
+        <%= link_to "Delete", post_path(post), :confirm => "Are you sure want to delete?", :method => :delete %> <br />
+    <% end %> <br />
 </p>
- 
 <p>
-    <b>Content:</b>
+    <b> Posted By : </b>
+    <%= post.user.username %>
+</p>
+<p>
+    <b> Content: </b>
     <%= post.content %>
 </p>
 <p>
-    <b>Number of comments:</b>
+    <b> Number of comments: </b>
     <%= post.comments.count %>
 </p>
-
 <p>
-  <b>Comments :</b>
-  <%= render post.comments %>
+    <b> Comments: </b>
+    <%= render post.comments %>
 </p>
-<h2>Add a comment:</h2>
-
-<%= render "comments/form", :post => post %>
+<% if @user == current_user || current_user.friends.include?(@user) %>
+    <h2>Add a comment:</h2>
+    <%= render "comments/form", :post => post %>
+<% end %>

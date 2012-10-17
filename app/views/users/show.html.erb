@@ -1,28 +1,29 @@
-
 <div style= "float :left;">
 	<%= image_tag @user.pic.url(:thumb) %> 
 </div>
-
-<h2> <%= @user.username %> </h2> <br/>
+<h2> <%= @user.username %> </h2> 
 Number of posts: <%= @user.posts.count %><br/>
 Number of comments: <%= @user.comments.count %></br/>
 Number of likes: <%= @user.likes.count %><br/> <br />
-<div style = "float :right; border: solid 1px black;" />
-<h3>My Friends</h3>  
-<ul>  
-   <% for friendship in @user.friendships %>  
-  	<li>  
-    	<%= friendship.friend.username %>  
-    	<%= link_to "Remove", friendship, :confirm => 'Are you sure you want to remove?', :method => :delete %> 
-  	</li>
-
+<div style = "float :right;" />
+  <h3>Friends</h3>  
+  <ul style = "list-style-type: none;" >  
+    <% for friendship in @user.friendships %>  
+  	 <li >  
+      <%= image_tag friendship.friend.pic.url(:thumb) %>
+    	<%= friendship.friend.username %>
+      <% if @user == current_user  %>
+      	 <%= link_to "Remove", friendship, :confirm => 'Are you sure you want to remove?', :method => :delete %>
+      <% end %>
+     
+  	 </li>
   <% end %>  
-
-</ul>  
+  </ul>  
 </div>
 <h2>Posts</h2> 
 <%= render @user.posts %>
+<% if @user == current_user %>
 <h2>Add a post:</h2>
 <%= render "posts/form" %>
 
-
+<% end %>

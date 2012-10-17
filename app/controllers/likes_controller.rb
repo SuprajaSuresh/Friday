@@ -1,21 +1,36 @@
 class LikesController < ApplicationController
- 
- def create
-    @post = Post.find(params[:post_id])
+
+  before_filter :load_post
+  before_filter :load_object, :only => [:destroy]
+
+  def create
     opts = {:user_id => current_user.id, :post_id => params[:post_id]}
     @like = @post.likes.create(opts)
+
     respond_to do |format|
-     if @like.save    
-        format.html { redirect_to @user }
-        format.js { create.html.js }
+      if @like.save    
+        format.html { redirect_to :back }    
       else
-        format.html { redirect_to @user } 
-        format.js { redirect_to @user }
-    redirect_to :back 
+        format.html { redirect_to :back }
+      end
+    end
   end
+
   def destroy
-    like = Like.find(params[:id])
-    like.destroy
-    redirect_to :back
+    @like.destroy
+    respond_to do |format|
+      format.html { redirect_to :back }
+    end
+  end
+
+  protected
+
+  def load_post
+    @post = Post.find(params[:post_id])
+  end
+  
+  def load_object
+    @like = (@post || load_post).likes.find(params[:id])
   end
 end
+  

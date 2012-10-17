@@ -1,0 +1,13 @@
+Friends
+
+<ul>  
+    <% for friendship in @user.friendships %>  
+  	 <li>  
+    	<%= friendship.friend.username %>
+      
+    	 <%= link_to "Remove", friendship, :confirm => 'Are you sure you want to remove?', :method => :delete %>
+     
+  	 </li>
+   
+  </ul>  
+  <% end %>

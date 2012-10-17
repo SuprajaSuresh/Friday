@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  
   def show
     @post = Post.find(params[:id])
     respond_to do |format|
@@ -19,6 +20,10 @@ class PostsController < ApplicationController
 		end
 	end
     
+  def new
+    @post = Post.new
+  end
+
   def edit
     @post = Post.find(params[:id])
   end
@@ -29,4 +34,5 @@ class PostsController < ApplicationController
     redirect_to :back
     flash[:notice] = "Post destroyed"
   end
+  
 end

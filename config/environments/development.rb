@@ -39,8 +39,8 @@ Friday::Application.configure do
     :address              => "smtp.gmail.com",
     :port                 => 587,
     :domain               => 'baci.lindsaar.net',
-    :user_name            => 'supraja.suresh.s',
-    :password             => 'borntodance',
+    :user_name            => 'railsreachout',
+    :password             => 'railsreachout',
     :authentication       => 'plain',
     :enable_starttls_auto => true  }
 # Defaults to:

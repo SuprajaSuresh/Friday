@@ -5,9 +5,6 @@ class User < ActiveRecord::Base
   has_many :friendships  
   has_many :friends, :through => :friendships  
 
-  has_many :inverse_friendships, :class_name => "Friendship", :foreign_key => "friend_id"  
-  has_many :inverse_friends, :through => :inverse_friendships, :source => :user
-
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   
   attr_accessible :dob, :email, :fullname, :gender, :password, :username, :password_confirmation, :pic
@@ -25,8 +22,12 @@ class User < ActiveRecord::Base
   validates :password, presence: true, length: {minimum: 6}, on: :create
   validates :dob,
   :date => {:before => Date.today, :message => 'must be before today'}   
-private
-  def create_remember_token
-    self.remember_token = SecureRandom.urlsafe_base64
+  def already_likes?(post)
+      self.likes.find(:all, :conditions => ['post_id = ?', post.id]).size > 0
   end
-end
+  private
+  def create_remember_token
+      self.remember_token = SecureRandom.urlsafe_base64
+  end 
+  
+end 
